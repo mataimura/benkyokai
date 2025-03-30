@@ -2,45 +2,132 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>アンケートフォーム</title>
+  <title>研究会登録について</title>
   <style>
-    .hidden { display: none; }
-    body { font-family: sans-serif; padding: 2em; }
-    label { display: block; margin: 1em 0; }
+    body {
+      font-family: sans-serif;
+      padding: 2em;
+      max-width: 700px;
+      margin: auto;
+      background-color: #f9f9f9;
+    }
+
+    h1 {
+      font-size: 1.6em;
+      margin-bottom: 1em;
+    }
+
+    .question-box {
+      background-color: #ffffff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      padding: 1em;
+      margin-bottom: 1.5em;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.5em;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    textarea {
+      width: 100%;
+      padding: 0.6em;
+      font-size: 1em;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    .radio-group label {
+      font-weight: normal;
+      margin-right: 1em;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    button {
+      padding: 0.8em 2em;
+      font-size: 1em;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
   </style>
 </head>
 <body>
-  <h1>アンケート</h1>
+
+  <h1>近隣施設と考える周産期研究会受講者アンケート</h1>
 
   <form id="survey-form">
-    <label>
-      このサービスを使ったことがありますか？
-      <br>
-      <input type="radio" name="used" value="yes" onclick="showExtra(true)"> はい
-      <input type="radio" name="used" value="no" onclick="showExtra(false)"> いいえ
-    </label>
 
-    <div id="extra-question" class="hidden">
-      <label>
-        どの機能を使いましたか？
-        <input type="text" name="features">
-      </label>
+    <div class="question-box">
+      <label for="facility">名前（必須）</label>
+      <input type="text" id="name" name="name" requirname    </div>
+
+    <div class="question-box">
+      <label for="email">御施設名（必須）</label>
+      <input type="text" id="faculty" name="faculty" required>
+    </div>
+
+    <div class="question-box">
+      <label for="email">開催の案内を送るメールアドレス（必須）</label>
+      <input type="email" id="email" name="email" required>
+    </div>
+
+  <div class="question-box">
+    <label>職種（必須）</label>
+    <div class="radio-group">
+      <label><input type="radio" name="profession" value="産婦人科医" onclick="toggleOther(false)"> 産婦人科医</label>
+      <label><input type="radio" name="profession" value="小児科医" onclick="toggleOther(false)"> 小児科医</label>
+      <label><input type="radio" name="profession" value="助産師" onclick="toggleOther(false)"> 助産師</label>
+      <label><input type="radio" name="profession" value="看護師" onclick="toggleOther(false)"> 看護師</label>
+      <label><input type="radio" name="profession" value="超音波技師" onclick="toggleOther(false)"> 超音波技師</label>
+      <label><input type="radio" name="profession" value="その他" onclick="toggleOther(true)"> その他</label>
+    </div>
+  
+    <div id="other-profession" class="hidden" style="margin-top: 0.8em;">
+      <label for="other-text">その他の職種を入力してください：</label>
+      <input type="text" id="other-text" name="other-profession">
+    </div>
+  </div>
+
+    <div class="question-box">
+      <label for="feedback">今回の研究会のご感想やご意見をお聞かせください。</label>
+      <textarea id="feedback" name="feedback" rows="4"></textarea>
+    </div>
+
+    <div class="question-box">
+      <label for="requests">今後の研究会開催にあたってのご要望などをお聞かせください。</label>
+      <textarea id="requests" name="requests" rows="4"></textarea>
     </div>
 
     <button type="submit">送信</button>
   </form>
 
   <script>
-    function showExtra(show) {
-      const extra = document.getElementById("extra-question");
-      extra.classList.toggle("hidden", !show);
+    function toggleTrouble(show) {
+      const troubleDiv = document.getElementById("trouble-details");
+      troubleDiv.classList.toggle("hidden", !show);
     }
 
     document.getElementById("survey-form").addEventListener("submit", function(e) {
       e.preventDefault();
-      alert("送信されました！（実際の保存処理はまだ）");
-      // 保存処理を書く場所
+      alert("送信されました！（このフォームはまだ保存機能を持っていません）");
     });
   </script>
+
 </body>
 </html>
