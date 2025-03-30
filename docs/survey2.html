@@ -99,8 +99,8 @@
     <div class="question-box">
       <label>受講上のトラブルはありましたか？</label>
       <div class="radio-group">
-        <label><input type="radio" name="trouble" value="yes" onclick="toggleTrouble(true)"> はい</label>
-        <label><input type="radio" name="trouble" value="no" onclick="toggleTrouble(false)"> いいえ</label>
+        <label><input type="radio" name="trouble" value="はい" onclick="toggleTrouble(true)"> はい</label>
+        <label><input type="radio" name="trouble" value="いいえ" onclick="toggleTrouble(false)"> いいえ</label>
       </div>
       <div id="trouble-details" class="hidden" style="margin-top: 1em;">
         <label for="trouble-description">どのようなトラブルでしたか？</label>
@@ -129,7 +129,36 @@
 
     document.getElementById("survey-form").addEventListener("submit", function(e) {
       e.preventDefault();
-      alert("送信されました！（このフォームはまだ保存機能を持っていません）");
+
+      const data = {
+        facility: document.getElementById("facility").value,
+        email: document.getElementById("email").value,
+        trouble: document.querySelector('input[name="trouble"]:checked')?.value || '',
+        troubleDescription: document.getElementById("trouble-description")?.value || '',
+        feedback: document.getElementById("feedback").value,
+        requests: document.getElementById("requests").value
+      };
+
+      fetch("https://script.google.com/macros/s/AKfycbxhM_eUtIqG-zo3IKW4yeOCbhrcXQNQ92w94vxNMX9GvaWnNm0Ut5YJgRoAoccuXZw/exec", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json"
+        }
+      })
+      .then(response => {
+        if (response.ok) {
+          alert("送信完了！ご協力ありがとうございます。");
+          document.getElementById("survey-form").reset();
+          toggleTrouble(false);  // トラブル欄も隠す
+        } else {
+          alert("送信に失敗しました。");
+        }
+      })
+      .catch(error => {
+        console.error("送信エラー:", error);
+        alert("送信中にエラーが発生しました。");
+      });
     });
   </script>
 
