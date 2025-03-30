@@ -7,31 +7,63 @@
     body {
       font-family: sans-serif;
       padding: 2em;
-      max-width: 600px;
+      max-width: 700px;
       margin: auto;
+      background-color: #f9f9f9;
     }
+
     h1 {
-      font-size: 1.5em;
+      font-size: 1.6em;
+      margin-bottom: 1em;
     }
+
+    .question-box {
+      background-color: #ffffff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      padding: 1em;
+      margin-bottom: 1.5em;
+    }
+
     label {
       display: block;
-      margin: 1em 0 0.3em;
+      margin-bottom: 0.5em;
+      font-weight: bold;
     }
-    textarea, input[type="text"], input[type="email"] {
+
+    input[type="text"],
+    input[type="email"],
+    textarea {
       width: 100%;
-      padding: 0.5em;
+      padding: 0.6em;
       font-size: 1em;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
     }
+
+    .radio-group label {
+      font-weight: normal;
+      margin-right: 1em;
+    }
+
     .hidden {
       display: none;
     }
-    .radio-group {
-      margin: 0.5em 0;
-    }
+
     button {
-      margin-top: 1.5em;
-      padding: 0.7em 1.5em;
+      padding: 0.8em 2em;
       font-size: 1em;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
     }
   </style>
 </head>
@@ -40,34 +72,38 @@
   <h1>近隣施設と考える周産期研究会受講者アンケート</h1>
 
   <form id="survey-form">
-    <!-- 質問1 -->
-    <label for="facility">御施設名（必須）</label>
-    <input type="text" id="facility" name="facility" required>
 
-    <!-- 質問2 -->
-    <label for="email">メールアドレス（必須）</label>
-    <input type="email" id="email" name="email" required>
-
-    <!-- 質問3 -->
-    <label>受講上のトラブルはありましたか？</label>
-    <div class="radio-group">
-      <label><input type="radio" name="trouble" value="yes" onclick="toggleTrouble(true)"> はい</label>
-      <label><input type="radio" name="trouble" value="no" onclick="toggleTrouble(false)"> いいえ</label>
+    <div class="question-box">
+      <label for="facility">御施設名（必須）</label>
+      <input type="text" id="facility" name="facility" required>
     </div>
 
-    <!-- 質問3（条件付き） -->
-    <div id="trouble-details" class="hidden">
-      <label for="trouble-description">どのようなトラブルでしたか？</label>
-      <textarea id="trouble-description" name="trouble-description" rows="4"></textarea>
+    <div class="question-box">
+      <label for="email">メールアドレス（必須）</label>
+      <input type="email" id="email" name="email" required>
     </div>
 
-    <!-- 質問4 -->
-    <label for="feedback">今回の研究会のご感想やご意見をお聞かせください。</label>
-    <textarea id="feedback" name="feedback" rows="4"></textarea>
+    <div class="question-box">
+      <label>受講上のトラブルはありましたか？</label>
+      <div class="radio-group">
+        <label><input type="radio" name="trouble" value="yes" onclick="toggleTrouble(true)"> はい</label>
+        <label><input type="radio" name="trouble" value="no" onclick="toggleTrouble(false)"> いいえ</label>
+      </div>
+      <div id="trouble-details" class="hidden" style="margin-top: 1em;">
+        <label for="trouble-description">どのようなトラブルでしたか？</label>
+        <textarea id="trouble-description" name="trouble-description" rows="4"></textarea>
+      </div>
+    </div>
 
-    <!-- 質問5 -->
-    <label for="requests">今後の研究会開催にあたってのご要望などをお聞かせください。</label>
-    <textarea id="requests" name="requests" rows="4"></textarea>
+    <div class="question-box">
+      <label for="feedback">今回の研究会のご感想やご意見をお聞かせください。</label>
+      <textarea id="feedback" name="feedback" rows="4"></textarea>
+    </div>
+
+    <div class="question-box">
+      <label for="requests">今後の研究会開催にあたってのご要望などをお聞かせください。</label>
+      <textarea id="requests" name="requests" rows="4"></textarea>
+    </div>
 
     <button type="submit">送信</button>
   </form>
@@ -81,7 +117,6 @@
     document.getElementById("survey-form").addEventListener("submit", function(e) {
       e.preventDefault();
       alert("送信されました！（このフォームはまだ保存機能を持っていません）");
-      // ここに送信処理を追加（例えば Google Sheets 連携など）
     });
   </script>
 
