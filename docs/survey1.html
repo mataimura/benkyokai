@@ -14,7 +14,19 @@
 
     h1 {
       font-size: 1.6em;
-      margin-bottom: 1em;
+      margin-bottom: 0.2em;
+    }
+
+    .required-overview {
+      color: red;
+      font-size: 0.95em;
+      margin-bottom: 2em;
+    }
+
+    .required-marker {
+      color: red;
+      font-weight: bold;
+      margin-left: 0.3em;
     }
 
     .question-box {
@@ -70,26 +82,27 @@
 <body>
 
   <h1>研究会登録について</h1>
+  <p class="required-overview">※ 必須の質問です</p>
 
   <form id="survey-form">
 
     <div class="question-box">
-      <label for="name">名前（必須）</label>
+      <label for="name">名前 <span class="required-marker">*</span></label>
       <input type="text" id="name" name="name" required>
     </div>
 
     <div class="question-box">
-      <label for="faculty">御施設名（必須）</label>
+      <label for="faculty">御施設名 <span class="required-marker">*</span></label>
       <input type="text" id="faculty" name="faculty" required>
     </div>
 
     <div class="question-box">
-      <label for="email">開催の案内を送るメールアドレス（必須）</label>
+      <label for="email">開催の案内を送るメールアドレス <span class="required-marker">*</span></label>
       <input type="email" id="email" name="email" required>
     </div>
 
     <div class="question-box">
-      <label>職種（必須）</label>
+      <label>職種 <span class="required-marker">*</span></label>
       <div class="radio-group">
         <label><input type="radio" name="profession" value="産婦人科医" onclick="toggleOther(false)" required> 産婦人科医</label>
         <label><input type="radio" name="profession" value="小児科医" onclick="toggleOther(false)"> 小児科医</label>
