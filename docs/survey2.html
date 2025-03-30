@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>近隣施設と考える周産期研究会受講者アンケート</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 2em;
+      max-width: 600px;
+      margin: auto;
+    }
+    h1 {
+      font-size: 1.5em;
+    }
+    label {
+      display: block;
+      margin: 1em 0 0.3em;
+    }
+    textarea, input[type="text"], input[type="email"] {
+      width: 100%;
+      padding: 0.5em;
+      font-size: 1em;
+    }
+    .hidden {
+      display: none;
+    }
+    .radio-group {
+      margin: 0.5em 0;
+    }
+    button {
+      margin-top: 1.5em;
+      padding: 0.7em 1.5em;
+      font-size: 1em;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>近隣施設と考える周産期研究会受講者アンケート</h1>
+
+  <form id="survey-form">
+    <!-- 質問1 -->
+    <label for="facility">御施設名（必須）</label>
+    <input type="text" id="facility" name="facility" required>
+
+    <!-- 質問2 -->
+    <label for="email">メールアドレス（必須）</label>
+    <input type="email" id="email" name="email" required>
+
+    <!-- 質問3 -->
+    <label>受講上のトラブルはありましたか？</label>
+    <div class="radio-group">
+      <label><input type="radio" name="trouble" value="yes" onclick="toggleTrouble(true)"> はい</label>
+      <label><input type="radio" name="trouble" value="no" onclick="toggleTrouble(false)"> いいえ</label>
+    </div>
+
+    <!-- 質問3（条件付き） -->
+    <div id="trouble-details" class="hidden">
+      <label for="trouble-description">どのようなトラブルでしたか？</label>
+      <textarea id="trouble-description" name="trouble-description" rows="4"></textarea>
+    </div>
+
+    <!-- 質問4 -->
+    <label for="feedback">今回の研究会のご感想やご意見をお聞かせください。</label>
+    <textarea id="feedback" name="feedback" rows="4"></textarea>
+
+    <!-- 質問5 -->
+    <label for="requests">今後の研究会開催にあたってのご要望などをお聞かせください。</label>
+    <textarea id="requests" name="requests" rows="4"></textarea>
+
+    <button type="submit">送信</button>
+  </form>
+
+  <script>
+    function toggleTrouble(show) {
+      const troubleDiv = document.getElementById("trouble-details");
+      troubleDiv.classList.toggle("hidden", !show);
+    }
+
+    document.getElementById("survey-form").addEventListener("submit", function(e) {
+      e.preventDefault();
+      alert("送信されました！（このフォームはまだ保存機能を持っていません）");
+      // ここに送信処理を追加（例えば Google Sheets 連携など）
+    });
+  </script>
+
+</body>
+</html>
