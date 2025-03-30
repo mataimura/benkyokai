@@ -74,12 +74,12 @@
   <form id="survey-form">
 
     <div class="question-box">
-      <label for="facility">名前（必須）</label>
-      <input type="text" id="name" name="name" requirname
+      <label for="name">名前（必須）</label>
+      <input type="text" id="name" name="name" required>
     </div>
 
     <div class="question-box">
-      <label for="email">御施設名（必須）</label>
+      <label for="faculty">御施設名（必須）</label>
       <input type="text" id="faculty" name="faculty" required>
     </div>
 
@@ -88,22 +88,22 @@
       <input type="email" id="email" name="email" required>
     </div>
 
-  <div class="question-box">
-    <label>職種（必須）</label>
-    <div class="radio-group">
-      <label><input type="radio" name="profession" value="産婦人科医" onclick="toggleOther(false)"> 産婦人科医</label>
-      <label><input type="radio" name="profession" value="小児科医" onclick="toggleOther(false)"> 小児科医</label>
-      <label><input type="radio" name="profession" value="助産師" onclick="toggleOther(false)"> 助産師</label>
-      <label><input type="radio" name="profession" value="看護師" onclick="toggleOther(false)"> 看護師</label>
-      <label><input type="radio" name="profession" value="超音波技師" onclick="toggleOther(false)"> 超音波技師</label>
-      <label><input type="radio" name="profession" value="その他" onclick="toggleOther(true)"> その他</label>
+    <div class="question-box">
+      <label>職種（必須）</label>
+      <div class="radio-group">
+        <label><input type="radio" name="profession" value="産婦人科医" onclick="toggleOther(false)" required> 産婦人科医</label>
+        <label><input type="radio" name="profession" value="小児科医" onclick="toggleOther(false)"> 小児科医</label>
+        <label><input type="radio" name="profession" value="助産師" onclick="toggleOther(false)"> 助産師</label>
+        <label><input type="radio" name="profession" value="看護師" onclick="toggleOther(false)"> 看護師</label>
+        <label><input type="radio" name="profession" value="超音波技師" onclick="toggleOther(false)"> 超音波技師</label>
+        <label><input type="radio" name="profession" value="その他" onclick="toggleOther(true)"> その他</label>
+      </div>
+
+      <div id="other-profession" class="hidden" style="margin-top: 0.8em;">
+        <label for="other-text">その他の職種を入力してください：</label>
+        <input type="text" id="other-text" name="other-profession">
+      </div>
     </div>
-  
-    <div id="other-profession" class="hidden" style="margin-top: 0.8em;">
-      <label for="other-text">その他の職種を入力してください：</label>
-      <input type="text" id="other-text" name="other-profession">
-    </div>
-  </div>
 
     <div class="question-box">
       <label for="feedback">研究会へのご要望</label>
@@ -114,9 +114,9 @@
   </form>
 
   <script>
-    function toggleTrouble(show) {
-      const troubleDiv = document.getElementById("trouble-details");
-      troubleDiv.classList.toggle("hidden", !show);
+    function toggleOther(show) {
+      const otherField = document.getElementById("other-profession");
+      otherField.classList.toggle("hidden", !show);
     }
 
     document.getElementById("survey-form").addEventListener("submit", function(e) {
