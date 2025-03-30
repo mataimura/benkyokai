@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>アンケートフォーム</title>
+  <style>
+    .hidden { display: none; }
+    body { font-family: sans-serif; padding: 2em; }
+    label { display: block; margin: 1em 0; }
+  </style>
+</head>
+<body>
+  <h1>アンケート</h1>
+
+  <form id="survey-form">
+    <label>
+      このサービスを使ったことがありますか？
+      <br>
+      <input type="radio" name="used" value="yes" onclick="showExtra(true)"> はい
+      <input type="radio" name="used" value="no" onclick="showExtra(false)"> いいえ
+    </label>
+
+    <div id="extra-question" class="hidden">
+      <label>
+        どの機能を使いましたか？
+        <input type="text" name="features">
+      </label>
+    </div>
+
+    <button type="submit">送信</button>
+  </form>
+
+  <script>
+    function showExtra(show) {
+      const extra = document.getElementById("extra-question");
+      extra.classList.toggle("hidden", !show);
+    }
+
+    document.getElementById("survey-form").addEventListener("submit", function(e) {
+      e.preventDefault();
+      alert("送信されました！（実際の保存処理はまだ）");
+      // 保存処理を書く場所
+    });
+  </script>
+</body>
+</html>
