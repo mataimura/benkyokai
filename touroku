@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <base target="_top">
+  <meta charset="UTF-8">
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 2em;
+      max-width: 700px;
+      margin: auto;
+      background-color: #f9f9f9;
+    }
+
+    h1 {
+      margin-bottom: 0.2em;
+    }
+
+    .required-note {
+      color: red;
+      margin-bottom: 1.5em;
+    }
+
+    .question-box {
+      background-color: #ffffff;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 1.2em;
+      margin-bottom: 1.5em;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 0.5em;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    textarea {
+      width: 100%;
+      padding: 0.6em;
+      margin-top: 0.3em;
+      font-size: 1em;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    .required-marker {
+      color: red;
+      margin-left: 0.3em;
+    }
+
+    .radio-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1em;
+      margin-top: 0.5em;
+    }
+
+    .radio-group label {
+      font-weight: normal;
+      display: flex;
+      align-items: center;
+      gap: 0.4em;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    button {
+      padding: 0.8em 2em;
+      font-size: 1em;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>研究会登録について</h1>
+  <p class="required-note">※ 必須の質問です</p>
+
+  <form method="post" action="<?= ScriptApp.getService().getUrl() ?>">
+
+    <div class="question-box">
+      <label>名前 <span class="required-marker">*</span></label>
+      <input type="text" name="name" required>
+    </div>
+
+    <div class="question-box">
+      <label>御施設名 <span class="required-marker">*</span></label>
+      <input type="text" name="facility" required>
+    </div>
+
+    <div class="question-box">
+      <label>開催の案内を送るメールアドレス <span class="required-marker">*</span></label>
+      <input type="email" name="email" required>
+    </div>
+
+    <div class="question-box">
+      <label>職種 <span class="required-marker">*</span></label>
+      <div class="radio-group">
+        <label><input type="radio" name="profession" value="産婦人科医" onclick="toggleOther(false)" required>産婦人科医</label>
+        <label><input type="radio" name="profession" value="小児科医" onclick="toggleOther(false)">小児科医</label>
+        <label><input type="radio" name="profession" value="助産師" onclick="toggleOther(false)">助産師</label>
+        <label><input type="radio" name="profession" value="看護師" onclick="toggleOther(false)">看護師</label>
+        <label><input type="radio" name="profession" value="超音波技師" onclick="toggleOther(false)">超音波技師</label>
+        <label><input type="radio" name="profession" value="その他" onclick="toggleOther(true)">その他</label>
+      </div>
+
+      <div id="other-profession" class="hidden" style="margin-top: 1em;">
+        <label>その他の職種を入力してください：</label>
+        <input type="text" name="other-profession">
+      </div>
+    </div>
+
+    <div class="question-box">
+      <label>研究会へのご要望</label>
+      <textarea name="feedback" rows="4"></textarea>
+    </div>
+
+    <button type="submit">送信</button>
+  </form>
+
+  <script>
+    function toggleOther(show) {
+      const otherField = document.getElementById("other-profession");
+      otherField.classList.toggle("hidden", !show);
+    }
+  </script>
+
+</body>
+</html>
