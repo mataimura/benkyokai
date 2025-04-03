@@ -130,7 +130,8 @@
 
   <script>
     function toggleTrouble(show) {
-      document.getElementById("trouble-detail").style.display = show ? "block" : "none";
+      const troubleField = document.getElementById("trouble-detail");
+      troubleField.classList.toggle("hidden", !show);
     }
   </script>
 
