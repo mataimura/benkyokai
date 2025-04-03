@@ -55,6 +55,7 @@
 
     .radio-group {
       display: flex;
+      flex-wrap: wrap;
       gap: 2em;
       margin-top: 0.5em;
     }
@@ -66,8 +67,8 @@
       gap: 0.4em;
     }
 
-    #trouble-detail {
-      margin-top: 1em;
+    .hidden {
+      display: none;
     }
 
     button {
@@ -131,7 +132,11 @@
   <script>
     function toggleTrouble(show) {
       const troubleField = document.getElementById("trouble-detail");
-      troubleField.classList.toggle("hidden", !show);
+      if (show) {
+        troubleField.classList.remove("hidden");
+      } else {
+        troubleField.classList.add("hidden");
+      }
     }
   </script>
 
