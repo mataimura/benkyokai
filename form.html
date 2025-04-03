@@ -132,11 +132,7 @@
   <script>
     function toggleTrouble(show) {
       const troubleField = document.getElementById("trouble-detail");
-      if (show) {
-        troubleField.classList.remove("hidden");
-      } else {
-        troubleField.classList.add("hidden");
-      }
+      troubleField.classList.toggle("hidden", !show);
     }
   </script>
 
